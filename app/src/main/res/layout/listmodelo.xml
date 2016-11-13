@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="right">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textViewList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/expressoes"
+                android:textSize="25dp"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.Design.Hint"
+                android:textColor="@android:color/holo_blue_dark" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="right">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_set_as"
+            android:id="@+id/upload"
+            android:layout_weight="1"
+            style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+            android:elevation="5dp"
+            android:rotation="180" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_dialog_info"
+            android:id="@+id/info"
+            android:layout_weight="1"
+            style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+            android:elevation="5dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            android:id="@+id/edit"
+            android:layout_weight="1"
+            android:elevation="5dp"
+            style="@android:style/Widget.DeviceDefault.Light.ImageButton" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            android:id="@+id/remove"
+            android:layout_weight="1"
+            android:elevation="5dp"
+            style="@android:style/Widget.DeviceDefault.Light.ImageButton" />
+
+    </LinearLayout>
+
+</LinearLayout>

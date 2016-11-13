@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="uespi.br.calculadora.MainActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="58dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/darker_gray"
+        android:layout_above="@+id/linearLayout">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/hsvLayout"
+            android:layout_gravity="right|center"
+            android:paddingLeft="10dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="right|center"
+                android:gravity="right|center"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvVisor"
+                    android:layout_gravity="right|center|end"
+                    android:gravity="right|center|end"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    android:textColor="@android:color/background_dark" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/tvResultado"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:layout_height="75dp"
+            android:textColor="?attr/colorPrimaryDark" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_alignParentBottom="true">
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:text="← "
+                android:id="@+id/btBack"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="C"
+                android:id="@+id/btC"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="±"
+                android:id="@+id/btInverte"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="÷"
+                android:id="@+id/btDivide"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="7"
+                android:id="@+id/bt7"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="8"
+                android:id="@+id/bt8"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="9"
+                android:id="@+id/bt9"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="*"
+                android:id="@+id/btVezes"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="4"
+                android:id="@+id/bt4"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="5"
+                android:id="@+id/bt5"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="6"
+                android:id="@+id/bt6"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="-"
+                android:id="@+id/btMenos"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="1"
+                android:id="@+id/bt1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="2"
+                android:id="@+id/bt2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="3"
+                android:id="@+id/bt3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="+"
+                android:id="@+id/btMais"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text=","
+                android:id="@+id/btPonto"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="0"
+                android:id="@+id/bt0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp"
+                android:layout_width="81dp" />
+
+            <Button
+                android:text="="
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/btIgual"
+                android:layout_columnSpan="2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="162dp"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_height="60dp" />
+
+        </GridLayout>
+    </LinearLayout>
+
+</LinearLayout>
