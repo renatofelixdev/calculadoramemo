@@ -2,6 +2,7 @@ package uespi.br.calculadora;
 
 import android.util.Log;
 
+import java.math.BigDecimal;
 import java.sql.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -14,101 +15,58 @@ import java.util.Collections;
 
 public abstract class Calcula {
     public static String resultado(String expressao){
-            if (expressao.contains("*") || expressao.contains("÷")) {
-                for (int i = 0; i < expressao.length(); i++) {
-                    if (expressao.charAt(i) == '*' || expressao.charAt(i) == '÷') {
-                        int localA = 0;
-                        for (int k = i - 1; k >= 0; k--) {
-                            if (expressao.charAt(k) == '+' || expressao.charAt(k) == '-' || expressao.charAt(k) == '*' || expressao.charAt(k) == '÷') {
-                                localA = k;
-                                break;
-                            }
-                        }
+            ArrayList<String> operadores = new ArrayList<String>();
+            ArrayList<Double> numeros = new ArrayList<Double>();
 
-                        int localB = expressao.length();
-                        for (int k = i + 1; k < expressao.length(); k++) {
-                            if (expressao.charAt(k) == '+' || expressao.charAt(k) == '-' || expressao.charAt(k) == '*' || expressao.charAt(k) == '÷') {
-                                localB = k;
-                                break;
-                            }
-                        }
+            numeros = quebraExpressao(expressao, false);
 
-                        Double a = 0.0;
-                        if (localA == 0)
-                            a = Double.parseDouble(expressao.substring(localA, i));
-                        else
-                            a = Double.parseDouble(expressao.substring(localA + 1, i));
-
-                        Double b = Double.parseDouble(expressao.substring(i + 1, localB));
-                        if (expressao.charAt(i) == '*') {
-                            Double resultado = a * b;
-                            resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
-                            if (localA == 0)
-                                expressao = expressao.substring(0, localA) + resultado + expressao.substring(localB, expressao.length());
-                            else
-                                expressao = expressao.substring(0, localA + 1) + resultado + expressao.substring(localB, expressao.length());
-                        } else if (expressao.charAt(i) == '÷') {
-                            Double resultado = a / b;
-                            resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
-                            if (localA == 0)
-                                expressao = expressao.substring(0, localA) + resultado + expressao.substring(localB, expressao.length());
-                            else
-                                expressao = expressao.substring(0, localA + 1) + resultado + expressao.substring(localB, expressao.length());
-                        }
-                        i = 0;
-                    }
-                    //Log.d("expressao", expressao);
+            for(int i = 0; i < expressao.length(); i++){
+                if(expressao.charAt(i) == '+' || (expressao.charAt(i) == '-' && i != 0 && expressao.charAt(i-1) != 'E') || expressao.charAt(i) == '*' || expressao.charAt(i) == '÷'){
+                    operadores.add(new String(String.valueOf(expressao.charAt(i))));
                 }
             }
 
-            if (expressao.contains("+") || expressao.contains("-")) {
-                for (int i = 0; i < expressao.length(); i++) {
-                    if (expressao.charAt(i) == '+' || (expressao.charAt(i) == '-' && i != 0 && expressao.charAt(i-1)!='E')) {
-                        int localA = 0;
-                        for (int k = i - 1; k >= 0; k--) {
-                            if (expressao.charAt(k) == '+' || (expressao.charAt(k) == '-' && k != 0 && expressao.charAt(k-1)!='E') || expressao.charAt(k) == '*' || expressao.charAt(k) == '÷') {
-                                localA = k;
-                                break;
-                            }
-                        }
-
-                        int localB = expressao.length();
-                        for (int k = i + 1; k < expressao.length(); k++) {
-                            if (expressao.charAt(k) == '+' || expressao.charAt(k) == '-' || expressao.charAt(k) == '*' || expressao.charAt(k) == '÷') {
-                                localB = k;
-                                break;
-                            }
-                        }
-                        Double a = 0.0;
-                        if (localA == 0) {
-                            //Log.d("localA", expressao.substring(localA, i));
-                            a = Double.parseDouble(expressao.substring(localA, i));
-                        }else
-                            a = Double.parseDouble(expressao.substring(localA + 1, i));
-
-                        Double b = Double.parseDouble(expressao.substring(i + 1, localB));
-                        if (expressao.charAt(i) == '+') {
-                            Double resultado = a + b;
-                            resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
-                            if (localA == 0)
-                                expressao = expressao.substring(0, localA) + resultado + expressao.substring(localB, expressao.length());
-                            else
-                                expressao = expressao.substring(0, localA + 1) + resultado + expressao.substring(localB, expressao.length());
-                        } else if (expressao.charAt(i) == '-') {
-                            Double resultado = a - b;
-                            resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
-                            if (localA == 0)
-                                expressao = expressao.substring(0, localA) + resultado + expressao.substring(localB, expressao.length());
-                            else
-                                expressao = expressao.substring(0, localA + 1) + resultado + expressao.substring(localB, expressao.length());
-                        }
-                        i = 0;
-                    }
-                    //Log.d("expressao", expressao);
+            for(int i = 0; i < operadores.size(); i++){
+                if(operadores.get(i).equals("*")){
+                    Double resultado = numeros.get(i) * numeros.get(i+1);
+                    resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
+                    operadores.remove(i);
+                    numeros.remove(i);
+                    numeros.remove(i);
+                    numeros.add(i, resultado);
+                    i--;
+                }else if(operadores.get(i).equals("÷")) {
+                    Double resultado = numeros.get(i) / numeros.get(i + 1);
+                    resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
+                    operadores.remove(i);
+                    numeros.remove(i);
+                    numeros.remove(i);
+                    numeros.add(i, resultado);
+                    i--;
                 }
             }
 
-            return expressao;
+            for(int i = 0; i < operadores.size(); i++){
+                if(operadores.get(i).equals("+")){
+                    Double resultado = numeros.get(i) + numeros.get(i+1);
+                    resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
+                    operadores.remove(i);
+                    numeros.remove(i);
+                    numeros.remove(i);
+                    numeros.add(i, resultado);
+                    i--;
+                }else if(operadores.get(i).equals("-")){
+                    Double resultado = numeros.get(i) - numeros.get(i+1);
+                    resultado = Double.parseDouble(new DecimalFormat("#.#######E0").format(resultado).replace(',', '.'));
+                    operadores.remove(i);
+                    numeros.remove(i);
+                    numeros.remove(i);
+                    numeros.add(i, resultado);
+                    i--;
+                }
+            }
+
+            return numeros.get(0).toString();
     }
 
     public static String maiorNumeroPar(ArrayList<Double> valores){
@@ -139,12 +97,12 @@ public abstract class Calcula {
         return menor;
     }
 
-    public static ArrayList<Double> quebraExpressao(String expressao){
+    public static ArrayList<Double> quebraExpressao(String expressao, boolean ordena){
         ArrayList<Double> valores = new ArrayList<Double>();
         String valor = "";
         //Log.d("expressao", expressao);
         for(int i = 0; i < expressao.length(); i++){
-            if(expressao.charAt(i) == '+' || (expressao.charAt(i) == '-' && i != 0) || expressao.charAt(i) == '*' || expressao.charAt(i) == '÷'){
+            if(expressao.charAt(i) == '+' || (expressao.charAt(i) == '-' && i != 0 && expressao.charAt(i-1) != 'E') || expressao.charAt(i) == '*' || expressao.charAt(i) == '÷'){
                 valores.add(new Double(Double.parseDouble(valor)));
                 valor = "";
             }else{
@@ -153,8 +111,8 @@ public abstract class Calcula {
             //Log.d("valor", valor);
         }
         valores.add(new Double(Double.parseDouble(valor)));
-
-        Collections.sort(valores);
+        if(ordena)
+            Collections.sort(valores);
         //Log.d("valores", valores.toString());
         return valores;
     }

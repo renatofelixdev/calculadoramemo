@@ -466,7 +466,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_share) {
             ArrayList<Double> valores = new ArrayList<Double>();
-            valores = Calcula.quebraExpressao(visor[0]);
+            valores = Calcula.quebraExpressao(visor[0], true);
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, "Calculadora Memo \nExpressão: "+visor[0]+

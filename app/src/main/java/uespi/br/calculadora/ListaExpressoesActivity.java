@@ -151,7 +151,7 @@ class ListScreenAdapter extends ArrayAdapter<Expressao>{
                 tvExprss.setText(o);
 
                 ArrayList<Double> valores = new ArrayList<Double>();
-                valores = Calcula.quebraExpressao(o);
+                valores = Calcula.quebraExpressao(o, true);
 
                 resultado.setText("Resultado:\n"+Calcula.resultado(o));
                 maiorPar.setText("Maior número par:\n"+Calcula.maiorNumeroPar(valores));
